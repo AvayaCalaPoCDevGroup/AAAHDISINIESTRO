@@ -4,7 +4,7 @@ public class autoProntoBean {
 
 	private int Id;
 	private int NumContrato;
-	private int NumSiniestro;
+	private long NumSiniestro;
 	private String Nombre;
 	private String FechaIngreso;
 	private String FechaSalida;
@@ -27,10 +27,10 @@ public class autoProntoBean {
 	public void setNumContrato(int numContrato) {
 		NumContrato = numContrato;
 	}
-	public int getNumSiniestro() {
+	public long getNumSiniestro() {
 		return NumSiniestro;
 	}
-	public void setNumSiniestro(int numSiniestro) {
+	public void setNumSiniestro(long numSiniestro) {
 		NumSiniestro = numSiniestro;
 	}
 	public String getNombre() {

@@ -56,7 +56,7 @@ public class autoPronto extends HttpServlet
 			/*SOLO EVALUA numsiniestro*/
 			if(request.getParameter("numsiniestro") != null){
 				String numeroSiniestro_key = request.getParameter("numsiniestro");
-				int numeroSiniestro = Integer.parseInt(numeroSiniestro_key);
+				long numeroSiniestro = Long.parseLong(numeroSiniestro_key);
 //				logger.info("Parametro: "+numeroSiniestro_key);
 				String SQL = "SELECT * FROM siniestrohdi WHERE numsiniestro = "+numeroSiniestro+";";
 				try (Statement stmt = conexion.createStatement();
@@ -66,7 +66,7 @@ public class autoPronto extends HttpServlet
 		            	autoProntoBean user = new autoProntoBean();
 	                	user.setId(rs.getInt("id"));
 	                	user.setNumContrato(rs.getInt("numcontrato"));
-	                	user.setNumSiniestro(rs.getInt("numsiniestro"));
+	                	user.setNumSiniestro(rs.getLong("numsiniestro"));
 	                	user.setNombre(rs.getString("nombre"));
 	                	user.setFechaIngreso(rs.getString("fechaingreso"));
 	                	user.setFechaSalida(rs.getString("fechasalida"));
@@ -113,7 +113,7 @@ public class autoPronto extends HttpServlet
 		            	autoProntoBean user = new autoProntoBean();
 	                	user.setId(rs.getInt("id"));
 	                	user.setNumContrato(rs.getInt("numcontrato"));
-	                	user.setNumSiniestro(rs.getInt("numsiniestro"));
+	                	user.setNumSiniestro(rs.getLong("numsiniestro"));
 	                	user.setNombre(rs.getString("nombre"));
 	                	user.setFechaIngreso(rs.getString("fechaingreso"));
 	                	user.setFechaSalida(rs.getString("fechasalida"));
@@ -158,7 +158,7 @@ public class autoPronto extends HttpServlet
                 	autoProntoBean user = new autoProntoBean();
                 	user.setId(rs.getInt("id"));
                 	user.setNumContrato(rs.getInt("numcontrato"));
-                	user.setNumSiniestro(rs.getInt("numsiniestro"));
+                	user.setNumSiniestro(rs.getLong("numsiniestro"));
                 	user.setNombre(rs.getString("nombre"));
                 	user.setFechaIngreso(rs.getString("fechaingreso"));
                 	user.setFechaSalida(rs.getString("fechasalida"));
@@ -330,7 +330,7 @@ public class autoPronto extends HttpServlet
 	        autoProntoBean myBean = gson.fromJson(reader, autoProntoBean.class);
 	        Statement stmt = conexion.createStatement();
 	        /*ASIGNANDO VALORES INPUT A VARIABLES LOCALES*/
-            int numsiniestro = myBean.getNumSiniestro();
+            long numsiniestro = myBean.getNumSiniestro();
             /*STATEMENT*/
             int affectedRows = stmt.executeUpdate("DELETE FROM siniestrohdi \n" +
                                                         "	WHERE numsiniestro = "+numsiniestro+";");
